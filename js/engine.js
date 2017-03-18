@@ -14,6 +14,9 @@
  * a little simpler to work with.
  */
 
+//scene counter
+var currentScene = 0;
+
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -27,7 +30,7 @@ var Engine = (function(global) {
 
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    doc.querySelector("div").appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -65,8 +68,29 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
-        lastTime = Date.now();
-        main();
+        changeScene();
+        //menu();
+        /* call the main menu here and wrap both lastTime and main() into an if,
+        so they are called only when the condition is met */
+        /*if (false) {
+            lastTime = Date.now();
+            main();
+        }*/
+    }
+
+    //change scene
+    //currentScene is changed on button click
+    function changeScene() {
+        if (currentScene === 0) {
+            menu();
+            requestAnimationFrame(changeScene);
+        } else if (currentScene === 1) {
+            lastTime = Date.now();
+            main();
+        } else if (currentScene === 2) {
+            charSelection();
+            requestAnimationFrame(changeScene);
+        }
     }
 
     /* This function is called by main (our game loop) and itself calls all

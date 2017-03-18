@@ -74,7 +74,7 @@ Player.prototype.update = function(enemy) {
         }
     }
     //checks if the player goes off-canvas
-    if (this.x >= 490 || this.x <= -50 || this.y >= 450 || this.y <= 0) {
+    if (this.x >= 490 || this.x <= -50 || this.y >= 450 || this.y <= -50) {
         this.x = startX;
         this.y = startY;
     }
@@ -83,6 +83,7 @@ Player.prototype.update = function(enemy) {
     if (this.y <= 0) {
         this.x = startX;
         this.y = startY;
+        window.alert("Congratz");
     }
 };
 

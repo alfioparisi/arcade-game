@@ -24,6 +24,7 @@ _NB: in order for the game to run you need to have index.html, images folder and
 
 ## How to
 
+Click on the canvas to start the game.
 Just use arrow keys to move the player.
 If you hit a bug, you get back to the starting point.
 Your goal is to reach the river.
