@@ -1,0 +1,82 @@
+body {
+  text-align: center;
+  font-family: Verdana;
+  text-shadow: 1px 0 black;
+}
+
+.container {
+  display: inline-block;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.title {
+  position: absolute;
+  background-color: rgba(0, 255, 255, 0.36);
+  color: rgba(249, 218, 251, 0.86);
+  font-size: 40px;
+  font-weight: bold;
+  height: 10%;
+}
+
+.frogger {
+  top: 13%;
+  left: -70%;
+  width: 65%;
+  transform: skewX(-20deg);
+  transition: left 300ms cubic-bezier(0.85, 0.45, 0.65, 1.56);
+}
+
+.game {
+  top: 30%;
+  right: -65%;
+  width: 60%;
+  transform: skewX(-20deg);
+  transition: right 300ms cubic-bezier(0.85, 0.45, 0.65, 1.56);
+}
+
+.animate-frogger {
+  left: -5%;
+}
+
+.animate-game {
+  right: -5%;
+}
+
+button {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+  border-radius: 8px;
+  box-shadow: 5px 2px 14px 1px rgba(0, 255, 255, 0.36);
+  color: rgb(88, 130, 130);
+  background-color: white;
+  text-shadow: 1px 0 black;
+  pointer-events: none;
+}
+
+.start {
+  left: 37.6%;
+  bottom: 15%;
+  font: 40px Verdana;
+}
+
+.select {
+  left: 20%;
+  bottom: 35%;
+  font: 25px Verdana;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.no-display {
+  display: none;
+  pointer-events: none;
+}
+
+.no-click {
+  pointer-events: none;
+}
