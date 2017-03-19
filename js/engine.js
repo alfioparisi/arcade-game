@@ -94,7 +94,7 @@ var Engine = (function(global) {
                 slideNumber++;
             }
             $($slide[slideNumber]).fadeIn();
-            sprite = $slide[slideNumber].src;
+            player.sprite = $slide[slideNumber].src;
         });
 
         btn = $("[name='prev']");
@@ -106,7 +106,7 @@ var Engine = (function(global) {
                 slideNumber--;
             }
             $($slide[slideNumber]).fadeIn();
-            sprite = $slide[slideNumber].src;
+            player.sprite = $slide[slideNumber].src;
         });
 
         $($slide[slideNumber]).show();
@@ -289,5 +289,4 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
-    global.sprite = sprite;
 })(this);

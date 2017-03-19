@@ -1,8 +1,7 @@
 var startX = 200,
     startY = 400,
     allEnemies = [],
-    i = 0,
-    sprite; //image url for character selection
+    i = 0;
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -56,7 +55,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     //loads the image
-    this.sprite = sprite || "images/char-boy.png";
+    this.sprite = "images/char-boy.png";
 
     //sets the initial position
     this.x = startX;
