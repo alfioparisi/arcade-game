@@ -13,6 +13,15 @@ body {
 }
 
 
+/* SCORE DIV */
+.score {
+  position: absolute;
+  color: white;
+  right: 10%;
+  font-size: 40px;
+}
+
+
 /* GAME TITLE */
 .title {
   position: absolute;

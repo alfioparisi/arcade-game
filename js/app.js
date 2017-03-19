@@ -15,11 +15,10 @@ var Enemy = function() {
 
     //set the initial position
     this.x = -(Math.random() * (500 - 100) + 100);
-    this.y = Math.random() * (330 - 30) + 30;
+    this.y = Math.random() * (320 - 30) + 30;
     //set the movement speed
     //give it a range
     this.speed = Math.random() * (450 - 100) + 100;
-
 };
 
 /* show the hitbox
@@ -75,6 +74,7 @@ Player.prototype.update = function(enemy) {
         this.y + 140 > enemy[i].y + 80 && this.y + 90 < enemy[i].y + 140) {
             this.x = startX;
             this.y = startY;
+            this.score = 0;
         }
     }
     //checks if the player goes off-canvas

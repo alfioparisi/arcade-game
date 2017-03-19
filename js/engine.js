@@ -24,11 +24,13 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement("canvas"),
         ctx = canvas.getContext("2d"),
-        lastTime;
+        lastTime,
+        scoreDiv;
 
     canvas.width = 505;
     canvas.height = 606;
     doc.querySelector("div").appendChild(canvas);
+    scoreDiv = document.querySelector(".score");
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -53,6 +55,8 @@ var Engine = (function(global) {
          * for the next time this function is called.
          */
         lastTime = now;
+
+        scoreDiv.textContent = player.score;
 
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
@@ -205,9 +209,9 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        /*allEnemies.forEach(function(enemy) {
+        allEnemies.forEach(function(enemy) {
             enemy.update(dt);
-        });*/
+        });
 
         gems.forEach(function(gem) {
             gem.update();
