@@ -123,7 +123,9 @@ var Engine = (function(global) {
             start,
             select,
             next,
-            prev;
+            prev,
+            slides,
+            i = 0;
 
         //grab elements
         container = document.querySelector(".container");
@@ -138,6 +140,8 @@ var Engine = (function(global) {
         next = document.querySelector("[name='next']");
         //prev button
         prev = document.querySelector("[name='prev']");
+        //slides
+        slides = document.getElementsByClassName("slide");
 
         //set a background
         ctx.fillStyle = "rgba(47, 38, 48, 0.87)";
@@ -169,6 +173,11 @@ var Engine = (function(global) {
             game.className = "no-display";
             select.className = "no-display";
             start.className = "no-display";
+            next.style.display = "none";
+            prev.style.display = "none";
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
             lastTime = Date.now();
             main();
         });
