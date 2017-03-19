@@ -14,8 +14,6 @@
  * a little simpler to work with.
  */
 
-//scene counter
-var currentScene = 0;
 
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
@@ -68,29 +66,64 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
-        changeScene();
-        //menu();
+        menu();
         /* call the main menu here and wrap both lastTime and main() into an if,
         so they are called only when the condition is met */
-        /*if (false) {
-            lastTime = Date.now();
-            main();
-        }*/
+        /*lastTime = Date.now();
+        main();*/
     }
 
-    //change scene
-    //currentScene is changed on button click
-    function changeScene() {
-        if (currentScene === 0) {
-            menu();
-            requestAnimationFrame(changeScene);
-        } else if (currentScene === 1) {
+    /* this is the starting menu of the game */
+
+    function menu() {
+        var cw = 505, //canvas width
+            ch = 606, //canvas height
+            container,
+            frogger,
+            game,
+            start,
+            select;
+
+        //grab elements
+        container = document.querySelector(".container");
+        //title
+        frogger = document.querySelector(".frogger");
+        game = document.querySelector(".game");
+        //start button
+        start = document.querySelector(".start");
+        //select character button
+        select = document.querySelector(".select");
+
+        //set a background
+        ctx.fillStyle = "rgba(47, 38, 48, 0.87)";
+        ctx.fillRect(0, 0, cw, ch);
+
+        //whenever a click happens, start the animation for the game title
+        container.addEventListener("click", function() {
+            frogger.className += " animate-frogger";
+            game.className += " animate-game";
+            start.className += " visible";
+            select.className += " visible";
+        });
+
+        //change to character selection
+        select.addEventListener("click", function() {
+            frogger.className = "no-display";
+            game.className = "no-display";
+            select.className = "no-display";
+            changeScene();
+        });
+
+        //start the gameplay
+        start.addEventListener("click", function() {
+            container.className += " no-click";
+            frogger.className = "no-display";
+            game.className = "no-display";
+            select.className = "no-display";
+            start.className = "no-display";
             lastTime = Date.now();
             main();
-        } else if (currentScene === 2) {
-            charSelection();
-            requestAnimationFrame(changeScene);
-        }
+        });
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -132,12 +165,12 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                "images/water-block.png",   // Top row is water
+                "images/stone-block.png",   // Row 1 of 3 of stone
+                "images/stone-block.png",   // Row 2 of 3 of stone
+                "images/stone-block.png",   // Row 3 of 3 of stone
+                "images/grass-block.png",   // Row 1 of 2 of grass
+                "images/grass-block.png"    // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
@@ -195,7 +228,11 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 

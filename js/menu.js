@@ -36,16 +36,17 @@ function menu() {
         frogger.className = "no-display";
         game.className = "no-display";
         select.className = "no-display";
-        currentScene = 2;
+        changeScene();
     });
 
     //start the gameplay
     start.addEventListener("click", function() {
-        container.className = "no-click";
+        container.className += " no-click";
         frogger.className = "no-display";
         game.className = "no-display";
         select.className = "no-display";
         start.className = "no-display";
-        currentScene = 1;
+        lastTime = Date.now();
+        main();
     });
 }
