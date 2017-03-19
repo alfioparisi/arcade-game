@@ -73,6 +73,48 @@ var Engine = (function(global) {
         main();*/
     }
 
+    /* this is the select character screen */
+
+    function charSelection() {
+        var cw = 505, //canvas width
+            ch = 606, //canvas height
+            slideNumber = 0,
+            $slide,
+            btn;
+
+        //set a background
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, cw, ch);
+
+        //slideshow
+        $slide = $(".slide");
+
+        btn = $("[name='next']");
+        btn.on("click", function() {
+            $slide.hide();
+            if (slideNumber === $slide.length - 1) {
+                slideNumber = 0;
+            } else {
+                slideNumber++;
+            }
+            $($slide[slideNumber]).fadeIn();
+            console.log($slide[slideNumber].src);
+        });
+
+        btn = $("[name='prev']");
+        btn.on("click", function() {
+            $slide.hide();
+            if (slideNumber === 0) {
+                slideNumber = $slide.length - 1;
+            } else {
+                slideNumber--;
+            }
+            $($slide[slideNumber]).fadeIn();
+        });
+
+        $($slide[slideNumber]).show();
+    }
+
     /* this is the starting menu of the game */
 
     function menu() {
@@ -82,7 +124,9 @@ var Engine = (function(global) {
             frogger,
             game,
             start,
-            select;
+            select,
+            next,
+            prev;
 
         //grab elements
         container = document.querySelector(".container");
@@ -93,6 +137,10 @@ var Engine = (function(global) {
         start = document.querySelector(".start");
         //select character button
         select = document.querySelector(".select");
+        //next button
+        next = document.querySelector("[name='next']");
+        //prev button
+        prev = document.querySelector("[name='prev']");
 
         //set a background
         ctx.fillStyle = "rgba(47, 38, 48, 0.87)";
@@ -111,7 +159,10 @@ var Engine = (function(global) {
             frogger.className = "no-display";
             game.className = "no-display";
             select.className = "no-display";
-            changeScene();
+            container.className += " no-click";
+            next.style.display = "block";
+            prev.style.display = "block";
+            charSelection();
         });
 
         //start the gameplay
