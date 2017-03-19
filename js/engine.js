@@ -94,7 +94,7 @@ var Engine = (function(global) {
                 slideNumber++;
             }
             $($slide[slideNumber]).fadeIn();
-            player.sprite = $slide[slideNumber].src.slice(47);
+            player.sprite = $slide[slideNumber].getAttribute("src");
         });
 
         btn = $("[name='prev']");
@@ -106,7 +106,7 @@ var Engine = (function(global) {
                 slideNumber--;
             }
             $($slide[slideNumber]).fadeIn();
-            player.sprite = $slide[slideNumber].src.slice(47);
+            player.sprite = $slide[slideNumber].getAttribute("src");
         });
 
         $($slide[slideNumber]).show();
