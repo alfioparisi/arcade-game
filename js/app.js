@@ -97,6 +97,7 @@ Player.prototype.rect = function() {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     //this.rect();
+    console.log(this.sprite);
 };
 
 //handle input method
