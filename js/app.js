@@ -1,7 +1,8 @@
 var startX = 200,
     startY = 400,
     allEnemies = [],
-    i = 0;
+    i = 0,
+    gems = [];
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -14,7 +15,7 @@ var Enemy = function() {
 
     //set the initial position
     this.x = -(Math.random() * (500 - 100) + 100);
-    this.y = Math.random() * (250 - 30) + 30;
+    this.y = Math.random() * (330 - 30) + 30;
     //set the movement speed
     //give it a range
     this.speed = Math.random() * (450 - 100) + 100;
@@ -60,6 +61,9 @@ var Player = function() {
     //sets the initial position
     this.x = startX;
     this.y = startY;
+
+    //gem collected
+    this.score = 0;
 };
 
 //update method
@@ -115,6 +119,38 @@ Player.prototype.handleInput = function(key) {
     }
 };
 
+
+//Gems class
+var Gem = function() {
+    this.x = Math.random() * (350 - 120) + 120;
+    this.y = Math.random() * (380 - 120) + 120;
+    this.sprite = "images/Gem-blue.png";
+};
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    //show hitbox
+    //ctx.strokeRect(this.x, this.y + 22, 36, 36);
+};
+
+Gem.prototype.update = function() {
+    this.isCollected(player);
+};
+
+Gem.prototype.isCollected = function(plyr) {
+    //check for collisions
+    if (this.x < plyr.x + 80 && this.x + 36 > plyr.x + 20 &&
+    this.y + 22 < plyr.y + 140 && this.y + 58 > plyr.y + 90) {
+        //remove the caught gem
+        gems.pop();
+        //add a new gem
+        gems.push(new Gem());
+        //increase the score
+        plyr.score++;
+    }
+};
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -127,6 +163,9 @@ for (i = 0; i < 9; i++) {
 
 //make player
 var player = new Player();
+
+//make gems
+gems.push(new Gem());
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
