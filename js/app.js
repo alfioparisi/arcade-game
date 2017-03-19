@@ -2,7 +2,7 @@ var startX = 200,
     startY = 400,
     allEnemies = [],
     i = 0,
-    sprite;
+    sprite; //image url for character selection
 
 // Enemies our player must avoid
 var Enemy = function() {

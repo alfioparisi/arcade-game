@@ -82,10 +82,6 @@ var Engine = (function(global) {
             $slide,
             btn;
 
-        //set a background
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, cw, ch);
-
         //slideshow
         $slide = $(".slide");
 
@@ -98,7 +94,7 @@ var Engine = (function(global) {
                 slideNumber++;
             }
             $($slide[slideNumber]).fadeIn();
-            console.log($slide[slideNumber].src);
+            sprite = $slide[slideNumber].src;
         });
 
         btn = $("[name='prev']");
@@ -110,6 +106,7 @@ var Engine = (function(global) {
                 slideNumber--;
             }
             $($slide[slideNumber]).fadeIn();
+            sprite = $slide[slideNumber].src;
         });
 
         $($slide[slideNumber]).show();
@@ -292,4 +289,5 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
+    global.sprite = sprite;
 })(this);
